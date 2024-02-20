@@ -3,3 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+*:focus-within {
+    outline-color: #0ea5e9;
+    outline-width: thick;
+}
