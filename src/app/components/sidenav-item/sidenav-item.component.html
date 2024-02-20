@@ -1,0 +1,18 @@
+<li>
+    <a
+        class="group flex gap-x-3 rounded-md bg-gray-50 p-2 text-sm font-semibold leading-6"
+        [ngClass]="{
+            'bg-gray-50 text-blue-600': active(),
+            'text-gray-700 hover:bg-gray-50 hover:text-blue-600': !active()
+        }"
+        [routerLink]="route()"
+    >
+        @if (route() === "/") {
+            <icon-menu />
+        } @else if (route() === "/favorites") {
+            <icon-star />
+        }
+
+        {{ text() }}
+    </a>
+</li>

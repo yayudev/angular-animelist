@@ -1,0 +1,18 @@
+<a routerLink="/series/{{ seriesId() }}" class="group relative">
+    <div class="aspect-h-3 aspect-w-2 h-full w-full overflow-hidden rounded-lg">
+        <img
+            class="object-cover object-center group-focus-within:opacity-75 group-hover:opacity-75"
+            [ngSrc]="image()"
+            [alt]="title()"
+            width="200"
+            height="300"
+            priority
+        />
+    </div>
+
+    <p
+        class="text-md absolute bottom-0 mt-1 w-full overflow-hidden text-ellipsis text-nowrap bg-cyan-600 bg-opacity-60 p-2 text-center text-lg italic text-white"
+    >
+        {{ title() }}
+    </p>
+</a>

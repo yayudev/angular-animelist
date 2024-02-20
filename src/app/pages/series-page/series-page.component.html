@@ -1,0 +1,84 @@
+@if (query.data()) {
+    <div class="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+        <div class="lg:grid lg:grid-cols-3 lg:items-start lg:gap-x-8">
+            <!-- Series poster -->
+            <div class="flex flex-col-reverse place-items-center">
+                <div class="aspect-[5/7] max-w-[300px]">
+                    <img
+                        [ngSrc]="series()?.image ?? '/images/placeholder.jpg'"
+                        width="325"
+                        height="475"
+                        alt="image of {{ series()?.title }}"
+                        class="h-full w-full sm:rounded-lg"
+                        priority
+                    />
+                </div>
+            </div>
+
+            <!-- Series info -->
+            <div class="col-span-2 mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
+                <!-- Title -->
+                <div>
+                    <div class="flex items-center justify-between">
+                        <h1
+                            class="flex text-3xl font-bold tracking-tight text-gray-900"
+                        >
+                            {{ series()?.title }}
+                        </h1>
+
+                        <button role="switch" (click)="toggleFavorite()">
+                            <icon-heart [active]="isFavorite()" />
+                        </button>
+                    </div>
+
+                    <p class="mt-2 text-2xl tracking-tight text-gray-500">
+                        {{ series()?.title_japanese }}
+                    </p>
+                </div>
+
+                <!-- Rating -->
+                <review-score [score]="seriesScore()" />
+
+                <!-- Synopsis -->
+                <div class="mt-6">
+                    <div class="space-y-6 text-base text-gray-700">
+                        <p>
+                            {{ series()?.synopsis }}
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trailer -->
+                <section class="mt-12">
+                    <ui-expandable-section title="Trailer">
+                        @defer (on viewport) {
+                            <div class="aspect-h-9 aspect-w-16 mx-auto">
+                                <youtube-player
+                                    [videoId]="series()?.trailerId"
+                                />
+                            </div>
+                        } @placeholder {
+                            <div class="aspect-[9/16] bg-gray-100"></div>
+                        } @loading {
+                            <ui-spinner />
+                        }
+                    </ui-expandable-section>
+                </section>
+            </div>
+        </div>
+    </div>
+}
+
+@if (query.isLoading()) {
+    <div class="h-100 w-100 flex items-center justify-center">
+        <ui-spinner />
+    </div>
+}
+
+@if (query.isError()) {
+    <div class="flex h-64 items-center justify-center">
+        <p class="text-red-500">
+            Something went wrong. Please try again later.
+        </p>
+    </div>
+}

@@ -1,0 +1,35 @@
+<div class="divide-y divide-gray-200 border-y">
+    <div>
+        <button
+            type="button"
+            class="group relative flex w-full items-center justify-between px-2 py-4 text-left"
+            aria-controls="disclosure-1"
+            aria-expanded="false"
+            (click)="toggle()"
+        >
+            <h3
+                class="text-lg font-medium"
+                [ngClass]="{
+                    'text-blue-600': expanded(),
+                    'text-gray-900': !expanded()
+                }"
+            >
+                {{ title() }}
+            </h3>
+
+            <span class="ml-6 flex items-center">
+                @if (expanded()) {
+                    <icon-minimize />
+                } @else {
+                    <icon-expand />
+                }
+            </span>
+        </button>
+
+        @if (expanded()) {
+            <div class="prose prose-sm min-w-full pb-6">
+                <ng-content></ng-content>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<form class="relative flex h-full w-full flex-1" action="#" method="GET">
+    <icon-search />
+    <input
+        #inputElement
+        id="search-field"
+        class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
+        placeholder="Search..."
+        type="search"
+        name="search"
+        autocomplete="off"
+        [value]="searchValue()"
+        (change)="this.change.emit($event)"
+        (input)="this.change.emit($event)"
+    />
+</form>

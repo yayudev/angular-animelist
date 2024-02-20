@@ -1,0 +1,9 @@
+<div class="mt-3 flex items-center">
+    @for (_ of positiveStars(); track $index) {
+        <icon-star variant="active" />
+    }
+
+    @for (_ of negativeStars(); track $index) {
+        <icon-star variant="inactive" />
+    }
+</div>
