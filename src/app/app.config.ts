@@ -15,6 +15,7 @@ import {
     localStorageSync,
     rehydrateApplicationState,
 } from "ngrx-store-localstorage";
+import { provideClientHydration } from "@angular/platform-browser";
 
 export function localStorageSyncReducer(
     reducer: ActionReducer<any>,
@@ -39,5 +40,6 @@ export const appConfig: ApplicationConfig = {
             },
         ),
         provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+        provideClientHydration(),
     ],
 };
