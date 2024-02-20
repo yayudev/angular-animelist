@@ -3,22 +3,20 @@ import {
     Component,
     computed,
     inject,
-    signal,
 } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Store } from "@ngrx/store";
 import { injectQuery } from "@tanstack/angular-query-experimental";
+
 import { JikanService } from "../../services/jikan.service";
+import { selectFavorites, selectSearch } from "../../store/app.selectors";
+
 import { AnimeSeriesItemComponent } from "../../components/anime-series-item/anime-series-item.component";
 import { SpinnerComponent } from "../../components/spinner/spinner.component";
 import { SearchInputComponent } from "../../components/search-input/search-input.component";
-import { FormsModule } from "@angular/forms";
-import { Store } from "@ngrx/store";
-import { selectFavorites, selectSearch } from "../../store/app.selectors";
-import { ActivatedRoute, Router } from "@angular/router";
-import { map } from "rxjs";
-import { toSignal } from "@angular/core/rxjs-interop";
 
 @Component({
-    selector: "page-season",
+    selector: "page-favorites",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     imports: [
@@ -28,23 +26,12 @@ import { toSignal } from "@angular/core/rxjs-interop";
         FormsModule,
     ],
     providers: [JikanService],
-    templateUrl: "./season-page.component.html",
+    templateUrl: "./favorites-page.component.html",
     styles: ":host { min-width: 100%; }",
 })
-export class SeasonPageComponent {
+export class FavoritesPageComponent {
     public animeSeasonsService = inject(JikanService);
     public store = inject(Store);
-    public router = inject(Router);
-    public activatedRoute = inject(ActivatedRoute);
-
-    public onlyFavorites = toSignal(
-        this.activatedRoute.data.pipe(
-            map((data) => (data as any).favorites as boolean | undefined),
-        ),
-        { initialValue: false },
-    );
-
-    public favorites = this.store.selectSignal(selectFavorites);
 
     public query = injectQuery(() => ({
         queryKey: ["current-season"],
@@ -52,16 +39,11 @@ export class SeasonPageComponent {
     }));
 
     public searchValue = this.store.selectSignal(selectSearch);
+    public favorites = this.store.selectSignal(selectFavorites);
 
     public displayedAnime = computed(() => {
         const searchValue = this.searchValue().toLowerCase();
-        let animeList = this.query.data() || [];
-
-        if (this.onlyFavorites()) {
-            animeList = animeList.filter((anime) =>
-                this.favorites().includes(anime.id),
-            );
-        }
+        const animeList = this.query.data() || [];
 
         if (searchValue) {
             return animeList.filter((anime) =>
@@ -69,6 +51,6 @@ export class SeasonPageComponent {
             );
         }
 
-        return animeList;
+        return animeList.filter((anime) => this.favorites().includes(anime.id));
     });
 }

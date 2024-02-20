@@ -9,13 +9,9 @@
                 <div
                     class="col-span-2 w-full text-center md:col-span-3 lg:col-span-4"
                 >
-                    <p class="text-base text-gray-500">No series found.</p>
-
-                    @if (onlyFavorites()) {
-                        <p class="text-base text-gray-500">
-                            Try adding some series to your favorites list.
-                        </p>
-                    }
+                    <p class="text-base text-gray-500">
+                        Try adding some series to your favorites list.
+                    </p>
                 </div>
             }
         </div>
@@ -30,7 +26,7 @@
     @if (query.isError()) {
         <div class="text-center">
             <p class="text-base text-red-600">
-                An error occurred while fetching the series.
+                An error occurred while fetching the series list.
             </p>
         </div>
     }

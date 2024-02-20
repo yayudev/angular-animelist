@@ -4,8 +4,8 @@ export const routes: Routes = [
     {
         path: "",
         loadComponent: () =>
-            import("./pages/season-page/season-page.component").then(
-                (m) => m.SeasonPageComponent,
+            import("./pages/anime-list-page/anime-list-page.component").then(
+                (m) => m.AnimeListPageComponent,
             ),
     },
     {
@@ -18,8 +18,8 @@ export const routes: Routes = [
     {
         path: "favorites",
         loadComponent: () =>
-            import("./pages/season-page/season-page.component").then(
-                (m) => m.SeasonPageComponent,
+            import("./pages/favorites-page/favorites-page.component").then(
+                (m) => m.FavoritesPageComponent,
             ),
         data: {
             favorites: true,
