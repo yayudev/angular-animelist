@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { SidenavItemComponent } from "../sidenav-item/sidenav-item.component";
+
+import { SidenavItemComponent } from "@/components/sidenav-item/sidenav-item.component";
 
 @Component({
     selector: "sidenav-desktop",

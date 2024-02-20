@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { NgClass } from "@angular/common";
 
 @Component({
     selector: "icon-search",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
     template: `
         <svg
             class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
@@ -18,6 +18,5 @@ import { NgClass } from "@angular/common";
             />
         </svg>
     `,
-    standalone: true,
 })
 export class SearchIconComponent {}

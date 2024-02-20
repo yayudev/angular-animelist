@@ -4,6 +4,7 @@ import { NgClass } from "@angular/common";
 @Component({
     selector: "icon-star",
     changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
     imports: [NgClass],
     template: `
         <svg
@@ -23,7 +24,6 @@ import { NgClass } from "@angular/common";
             />
         </svg>
     `,
-    standalone: true,
 })
 export class StarIconComponent {
     public variant = input<"active" | "inactive" | "default">("default");

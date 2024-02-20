@@ -4,7 +4,7 @@ import {
     computed,
     input,
 } from "@angular/core";
-import { StarIconComponent } from "../../icons/star-icon.component";
+import { StarIconComponent } from "@/icons/star-icon.component";
 
 @Component({
     selector: "review-score",
@@ -16,15 +16,15 @@ import { StarIconComponent } from "../../icons/star-icon.component";
 export class ReviewScoreComponent {
     public score = input(0);
 
-    private scoreInStars = computed(() => {
+    private readonly scoreInStars = computed(() => {
         return Math.round(this.score() / 2);
     });
 
-    public positiveStars = computed(() => {
+    public readonly positiveStars = computed(() => {
         return Array.from({ length: this.scoreInStars() });
     });
 
-    public negativeStars = computed(() => {
+    public readonly negativeStars = computed(() => {
         return Array.from({ length: 5 - this.scoreInStars() });
     });
 }

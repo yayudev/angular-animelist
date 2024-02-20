@@ -4,9 +4,10 @@ import {
     computed,
     input,
 } from "@angular/core";
-import { RouterLink } from "@angular/router";
-import { AnimeSeries } from "../../types/anime.model";
 import { NgOptimizedImage } from "@angular/common";
+import { RouterLink } from "@angular/router";
+
+import type { AnimeSeries } from "@/types";
 
 @Component({
     selector: "anime-series-item",
@@ -18,7 +19,7 @@ import { NgOptimizedImage } from "@angular/common";
 export class AnimeSeriesItemComponent {
     public series = input.required<AnimeSeries>();
 
-    public seriesId = computed(() => this.series().id);
-    public title = computed(() => this.series().title);
-    public image = computed(() => this.series().image);
+    public readonly seriesId = computed(() => this.series().id);
+    public readonly title = computed(() => this.series().title);
+    public readonly image = computed(() => this.series().image);
 }

@@ -1,19 +1,19 @@
 import { createReducer, on } from "@ngrx/store";
-import { setSearch, setSidenav } from "./app.actions";
-import { toggleFavorite } from "./app.actions";
+
+import { setSearch, setSidenav, toggleFavorite } from "./app.actions";
 
 export const APP_FEATURE_KEY = "app";
 
 export interface AppState {
+    favorites: number[];
     isSidenavOpen: boolean;
     search: string;
-    favorites: number[];
 }
 
 export const initialState: AppState = {
+    favorites: [],
     isSidenavOpen: false,
     search: "",
-    favorites: [],
 };
 
 export const appReducer = createReducer(

@@ -1,8 +1,8 @@
 import { inject, Injectable } from "@angular/core";
-import { AnimeSeries, RawAnimeSeries } from "../types/anime.model";
 import { HttpClient } from "@angular/common/http";
 import { lastValueFrom, map, timeout } from "rxjs";
-import { injectQuery } from "@tanstack/angular-query-experimental";
+
+import type { AnimeSeries, RawAnimeSeries } from "@/types/anime.model";
 
 @Injectable({
     providedIn: "root",
@@ -36,15 +36,6 @@ export class JikanService {
             ),
         );
     }
-}
-
-export function injectQueryForAnimeSeason() {
-    const jikanService = inject(JikanService);
-
-    return injectQuery(() => ({
-        queryKey: ["current-season"],
-        queryFn: () => jikanService.getCurrentSeason(),
-    }));
 }
 
 function mapResponseToAnimeList(rawSeries: RawAnimeSeries): AnimeSeries {

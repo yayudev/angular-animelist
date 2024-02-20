@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from "@angular/core";
-import { MenuIconComponent } from "../../icons/menu-icon.component";
-import { StarIconComponent } from "../../icons/star-icon.component";
-import { RouterLink } from "@angular/router";
 import { NgClass } from "@angular/common";
+import { RouterLink } from "@angular/router";
+
+import { MenuIconComponent } from "@/icons/menu-icon.component";
+import { StarIconComponent } from "@/icons/star-icon.component";
 
 @Component({
     selector: "sidenav-item",

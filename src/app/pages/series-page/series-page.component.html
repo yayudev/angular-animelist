@@ -50,7 +50,7 @@
 
                 <!-- Trailer -->
                 <section class="mt-12">
-                    <ui-expandable-section title="Trailer">
+                    <expandable-section title="Trailer">
                         @defer (on viewport) {
                             <div class="aspect-h-9 aspect-w-16 mx-auto">
                                 <youtube-player
@@ -60,9 +60,9 @@
                         } @placeholder {
                             <div class="aspect-[9/16] bg-gray-100"></div>
                         } @loading {
-                            <ui-spinner />
+                            <spinner />
                         }
-                    </ui-expandable-section>
+                    </expandable-section>
                 </section>
             </div>
         </div>
@@ -71,7 +71,7 @@
 
 @if (query.isLoading()) {
     <div class="h-100 w-100 flex items-center justify-center">
-        <ui-spinner />
+        <spinner />
     </div>
 }
 

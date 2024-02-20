@@ -12,32 +12,35 @@ import {
     Output,
     viewChild,
 } from "@angular/core";
-import { NgIf } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { fromEvent } from "rxjs";
 import { takeUntilDestroyed, toSignal } from "@angular/core/rxjs-interop";
+import { fromEvent } from "rxjs";
 import { injectActiveElement } from "ngxtension/active-element";
-import { SearchIconComponent } from "../../icons/search-icon.component";
+
+import { SearchIconComponent } from "@/icons/search-icon.component";
 
 @Component({
     selector: "search-input",
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
     templateUrl: "./search-input.component.html",
-    imports: [FormsModule, NgIf, SearchIconComponent],
+    imports: [FormsModule, SearchIconComponent],
     styles: [":host { width: 100%; height: 100%;}"],
 })
 export class SearchInputComponent implements OnInit {
     private readonly destroyRef = inject(DestroyRef);
     private readonly zone = inject(NgZone);
 
-    private activeElement = toSignal(injectActiveElement());
-    private inputRef = viewChild<ElementRef<HTMLInputElement>>("inputElement");
+    private readonly activeElement = toSignal(injectActiveElement());
+    private readonly inputRef =
+        viewChild<ElementRef<HTMLInputElement>>("inputElement");
 
     public searchValue = input("");
-    @Output() change = new EventEmitter<Event>();
 
-    public isInputFocused = computed(
+    @Output()
+    public readonly change = new EventEmitter<Event>();
+
+    public readonly isInputFocused = computed(
         () => this.activeElement() === this.inputRef()?.nativeElement,
     );
 
